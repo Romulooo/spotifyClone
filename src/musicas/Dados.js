@@ -83,7 +83,7 @@ export default [
         fonte: require("./Slipknot - Vermillion pt2.mp3"),
         imagem: require("./imagens/vol3 (the subliminal verses).jpeg"),
         generos: [
-          "nu metal",
+          "rock",
         ],
       },
   ];
