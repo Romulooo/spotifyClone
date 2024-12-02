@@ -8,6 +8,9 @@ export default function Navegador(props) {
     <Pressable onPress={ () => props.navigation.navigate("Home") }>
         <Image style={ Estilo.navegadorIcone } source={ require("../../assets/iconeHome.png") }/>
     </Pressable>
+    <Pressable onPress={ () => props.navigation.navigate("Likes") }>
+        <Image style={ Estilo.navegadorIcone } source={ require("../../assets/iconeLike.png") }/>
+    </Pressable>
     <Pressable onPress={ () => props.navigation.navigate("Profile") }>
         <Image style={ Estilo.navegadorIcone } source={ require("../../assets/iconeProfile.png") }/>
     </Pressable>

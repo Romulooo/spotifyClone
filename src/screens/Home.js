@@ -4,6 +4,7 @@ import Navegador from "../components/Navegador"
 
 import Dados from "../musicas/Dados";
 import Conteudo from "../components/Conteudo";
+import Estilo from "../styles/Estilo";
 
 const DadosAleatorio = Dados.sort(function() {
     return Math.random() - 0.5 
@@ -15,10 +16,7 @@ export default function Home({ navigation }) {
         <Navegador navigation={navigation}/>
         <ScrollView pagingEnabled>
 
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
+        <Text style = {Estilo.titulo} >Início</Text>
 
         { DadosAleatorio.length > 0 &&
         DadosAleatorio.map(function(musica) {

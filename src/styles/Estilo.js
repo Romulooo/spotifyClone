@@ -1,11 +1,19 @@
 import { Dimensions, StyleSheet } from "react-native"
 
 export default StyleSheet.create({
+    titulo: {
+        top: 16,
+        left: 16,
+        marginBottom: 48,
+        fontSize: 32,
+        fontWeight: 700,
+        color: "#fff",
+    },
     navegador: {
         bottom: 0,
         flexDirection: "row",
         justifyContent: "space-around",
-        paddingVertical: 100,
+        paddingVertical: 50,
         position: "absolute",
         width: "100%",
         zIndex: 999,
@@ -15,7 +23,8 @@ export default StyleSheet.create({
         width: 32
     },
     musica: {
-        display: "inline-flex"
+        display: "inline-flex",
+        width: "80%"
     },
     musicaIcone: {
         height: 64,
@@ -36,6 +45,13 @@ export default StyleSheet.create({
         bottom: "50%",
         left: 92,
         color: "#fff"
+    },
+    musicaLike: {
+        height: 32,
+        width: 32,
+        right: 32,
+        top: -100,
+        position: "absolute",
     }
 })
 
