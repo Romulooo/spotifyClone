@@ -36,19 +36,20 @@ export default function Conteudo(props) {
 
 
     async function playSound() {
-        console.log('Loading Sound');
+        console.log('Carregando');
         const { sound } = await Audio.Sound.createAsync( require('../musicas/Green Day - American Idiot.mp3')
         );
+        
         setSound(sound);
-    
-        console.log('Playing Sound');
+        
+        console.log('Tocando');
         await sound.playAsync();
       }
     
       useEffect(() => {
         return sound
           ? () => {
-              console.log('Unloading Sound');
+              console.log('Parando');
               sound.unloadAsync();
             }
           : undefined;

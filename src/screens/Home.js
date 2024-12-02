@@ -21,8 +21,8 @@ export default function Home({ navigation }) {
         { DadosAleatorio.length > 0 &&
         DadosAleatorio.map(function(musica) {
             return <Conteudo 
-              nome={ musica.nome }
-              banda={ musica.banda }
+              nome = { musica.nome }
+              banda = { musica.banda }
               imagem = {musica.imagem}
               />
           })

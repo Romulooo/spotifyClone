@@ -4,6 +4,7 @@ import Navegador from "../components/Navegador"
 
 import Estilo from "../styles/Estilo";
 
+
 export default function Profile({ navigation }) {
     return( <View backgroundColor="#2e2e2e">
         <StatusBar barStyle="light-content"/>
