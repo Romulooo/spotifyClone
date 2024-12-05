@@ -11,6 +11,7 @@ const DadosAleatorio = Dados.sort(function() {
 })
 
 export default function Home({ navigation }) {
+
     return( <View backgroundColor="#2e2e2e">
         <StatusBar barStyle="light-content" backgroundColor="#000000"/>
         <Navegador navigation={navigation}/>
@@ -23,7 +24,9 @@ export default function Home({ navigation }) {
             return <Conteudo 
               nome = { musica.nome }
               banda = { musica.banda }
+              genero = {musica.genero}
               imagem = {musica.imagem}
+              fonte = {musica.fonte} 
               />
           })
         }

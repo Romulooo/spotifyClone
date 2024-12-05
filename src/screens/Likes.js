@@ -34,9 +34,7 @@ export default function Likes({ navigation }) {
                 imagem = {musica.imagem}
                 />
             }
-            
-          })
-          
+        })  
         :
             <View>
                 <Text></Text>
@@ -52,12 +50,26 @@ export default function Likes({ navigation }) {
                 <Text></Text>
                 <Text></Text>
                 <Text></Text>
-                <Text> Nenhuma música curtida! </Text>
-                <Text> Nenhuma música curtida! </Text>
-                <Text> Nenhuma música curtida! </Text>
-                <Text> Nenhuma música curtida! </Text>
+                <Text style={Estilo.semLikes}> Nenhuma música curtida! </Text>
+
             </View>
         }
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
         <Text></Text>
         <Text></Text>
         <Text></Text>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { View, Pressable, Image, Text } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 import { Audio } from 'expo-av';
 
 import Estilo from "../styles/Estilo"
@@ -12,6 +14,11 @@ import ObterMusicasCurtidas from "../functions/ObterMusicasCurtidas";
 import LimparMusicaCurtida from "../functions/LimparMusicaCurtida";
 
 
+let rock = '0'
+let punk_rock = '0'
+let mpb = '0'
+let pop = '0'
+let musicas = '0'
 
 export default function Conteudo(props) {
     const [ estado, definirEstado ] = useState(true)
@@ -19,6 +26,8 @@ export default function Conteudo(props) {
 
     const [sound, setSound] = useState();
 
+  
+    
     function Curtir() {
         if (curtido) LimparMusicaCurtida(props.nome)
         else SalvarMusicaCurtida(props.nome)
@@ -34,18 +43,38 @@ export default function Conteudo(props) {
         obterCurtidas()
       }, [])
 
+   
 
     async function playSound() {
         console.log('Carregando');
         const { sound } = await Audio.Sound.createAsync( require('../musicas/Green Day - American Idiot.mp3')
         );
-        
+                
         setSound(sound);
+        console.log(props.genero);
+        if (props.genero == "rock"){
+          rock = String(Number(rock)+1)
+          AsyncStorage.setItem('rock',rock)
+        }
+        else if (props.genero == "punk rock"){
+          punk_rock = String(Number(punk_rock)+1)
+          AsyncStorage.setItem('punk_rock',punk_rock)
+        }
+        else if (props.genero == "MPB"){
+          mpb = String(Number(mpb)+1)
+          AsyncStorage.setItem('MPB',mpb)
+        }
+        else if (props.genero == "pop"){
+          pop = String(Number(pop)+1)
+          AsyncStorage.setItem('pop',pop)
+        }
+        musicas = String(Number(musicas)+1)
+        AsyncStorage.setItem('musicas',musicas)
         
         console.log('Tocando');
         await sound.playAsync();
       }
-    
+
       useEffect(() => {
         return sound
           ? () => {
@@ -55,6 +84,7 @@ export default function Conteudo(props) {
           : undefined;
       }, [sound]);
     
+
     return <View>
         <View>
             <Pressable style={Estilo.musica} onPress={() => {

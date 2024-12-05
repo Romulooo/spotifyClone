@@ -9,6 +9,15 @@ export default StyleSheet.create({
         fontWeight: 700,
         color: "#fff",
     },
+    subtitulo: {
+        left: 16,
+        fontSize: 26,
+        fontWeight: 500,
+        color: "#fff",
+    },
+    informação: {
+        color: "#34eb43"
+    },
     navegador: {
         bottom: 0,
         flexDirection: "row",
@@ -52,6 +61,13 @@ export default StyleSheet.create({
         right: 32,
         top: -100,
         position: "absolute",
-    }
+    },
+    semLikes: {
+        fontSize: 32,
+        width: "100%",
+        textAlign: "center",
+        color: "#fff",
+        fontWeight: 100,
+    },
 })
 
