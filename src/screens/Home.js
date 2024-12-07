@@ -27,6 +27,7 @@ export default function Home({ navigation }) {
               genero = {musica.genero}
               imagem = {musica.imagem}
               fonte = {musica.fonte} 
+              id = {musica.id}
               />
           })
         }

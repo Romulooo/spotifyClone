@@ -5,6 +5,7 @@ export default async function SalvarMusicaCurtida(codigo) {
         const musicasCurtidas = await AsyncStorage.getItem("curtidos")
         const musicasCurtidasLista = JSON.parse(musicasCurtidas || "[]")
 
+    
         if (musicasCurtidasLista.includes(codigo) === false) {
             musicasCurtidasLista.push(codigo)
         }

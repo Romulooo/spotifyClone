@@ -15,8 +15,8 @@ export default function Likes({ navigation }) {
     async function obterCurtidas() {
         const lista = await ObterMusicasCurtidas()
         definirCurtidas(lista)
-      }
-      obterCurtidas()
+    }
+    obterCurtidas()
 
     return( <View backgroundColor="#2e2e2e">
         <StatusBar barStyle="light-content" backgroundColor="#000000"/>
@@ -27,11 +27,13 @@ export default function Likes({ navigation }) {
 
         { curtidas.length > 0 ?
         Dados.map(function(musica) {
-            if (curtidas.includes(musica.nome)) {
+            if (curtidas.includes(musica.id)) {
                 return <Conteudo 
                 nome={ musica.nome }
                 banda={ musica.banda }
                 imagem = {musica.imagem}
+                fonte = {musica.fonte}
+                id = {musica.id}
                 />
             }
         })  

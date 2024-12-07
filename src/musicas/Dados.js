@@ -5,7 +5,7 @@ export default [
       genero: "punk rock",
       fonte: require("./Green Day - American Idiot.mp3"),
       imagem: require("./imagens/american idiot.jpg"),
-      
+      id: "11111"
     },
     {
       nome: "Whatsername",
@@ -13,6 +13,7 @@ export default [
       genero: "punk rock",
       fonte: require("./Green Day - Whatsername.mp3"),
       imagem: require("./imagens/american idiot.jpg"),
+      id: "22222"
       
     },
     {
@@ -21,6 +22,7 @@ export default [
         genero: "pop",
         fonte: require("./The Beatles - All My Loving.mp3"),
         imagem: require("./imagens/with the beatles.jpeg"),
+        id: "33333"
       },
       {
         nome: "Californication",
@@ -28,6 +30,7 @@ export default [
         genero: "rock",
         fonte: require("./Red Hot Chili Peppers - Californication.mp3"),
         imagem: require("./imagens/californication.jpg"),
+        id: "44444"
       },
       {
         nome: "Scar Tissue",
@@ -35,6 +38,7 @@ export default [
         genero: "rock",
         fonte: require("./Red Hot Chili Peppers - Scar Tissue.mp3"),
         imagem: require("./imagens/californication.jpg"),
+        id: "55555"
       },
       {
         nome: "Tempo Perdido",
@@ -42,6 +46,7 @@ export default [
         genero: "MPB",
         fonte: require("./Legião Urbana - Tempo Perdido.mp3"),
         imagem: require("./imagens/dois.jpeg"),
+        id: "66666"
       },
       {
         nome: "Kashmir",
@@ -49,6 +54,7 @@ export default [
         genero: "rock",
         fonte: require("./Led Zeppelin - Kashmir.mp3"),
         imagem: require("./imagens/physical graffiti.jpg"),
+        id: "77777"
       },
       {
         nome: "Still Loving You",
@@ -56,6 +62,7 @@ export default [
         genero: "rock",
         fonte: require("./Scorpions - Still Loving You.mp3"),
         imagem: require("./imagens/love at first sting.webp"),
+        id: "88888"
       },
       {
         nome: "Vermillion pt2",
@@ -63,5 +70,6 @@ export default [
         genero: "rock",
         fonte: require("./Slipknot - Vermillion pt2.mp3"),
         imagem: require("./imagens/vol3 (the subliminal verses).jpeg"),
+        id: "99999"
       },
   ];

@@ -8,48 +8,44 @@ import { Audio } from 'expo-av';
 
 import Estilo from "../styles/Estilo"
 
-
 import SalvarMusicaCurtida from "../functions/SalvarMusicaCurtida";
 import ObterMusicasCurtidas from "../functions/ObterMusicasCurtidas";
 import LimparMusicaCurtida from "../functions/LimparMusicaCurtida";
-
 
 let rock = '0'
 let punk_rock = '0'
 let mpb = '0'
 let pop = '0'
 let musicas = '0'
+let genero_mais_ouvido = 'Nenhum'
 
 export default function Conteudo(props) {
     const [ estado, definirEstado ] = useState(true)
     const [ curtido, definirCurtido ] = useState(false)
 
     const [sound, setSound] = useState();
-
-  
     
     function Curtir() {
-        if (curtido) LimparMusicaCurtida(props.nome)
-        else SalvarMusicaCurtida(props.nome)
+        if (curtido) LimparMusicaCurtida(props.id)
+        else SalvarMusicaCurtida(props.id)
         definirCurtido(!curtido)
     }
 
     useEffect(function() {
         async function obterCurtidas() {
           const lista = await ObterMusicasCurtidas()
-          if (lista.includes(props.nome))
+          if (lista.includes(props.id))
             definirCurtido(true)
         }
         obterCurtidas()
       }, [])
 
-   
-
-    async function playSound() {
+    async function playSound() {     
+        let fonte = props.fonte
+        
         console.log('Carregando');
-        const { sound } = await Audio.Sound.createAsync( require('../musicas/Green Day - American Idiot.mp3')
-        );
-                
+        const { sound } = await Audio.Sound.createAsync(fonte);
+           
         setSound(sound);
         console.log(props.genero);
         if (props.genero == "rock"){
@@ -68,9 +64,30 @@ export default function Conteudo(props) {
           pop = String(Number(pop)+1)
           AsyncStorage.setItem('pop',pop)
         }
+
         musicas = String(Number(musicas)+1)
         AsyncStorage.setItem('musicas',musicas)
         
+        console.log(Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)))
+
+        if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(rock)){
+          genero_mais_ouvido = 'Rock'
+          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
+        }
+        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(punk_rock)) {
+          genero_mais_ouvido = 'Punk rock'
+          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
+        }
+        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(pop)) {
+          genero_mais_ouvido = 'Pop'
+          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
+        }
+        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(mpb)) {
+          genero_mais_ouvido = 'MPB'
+          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
+        }
+        console.log(genero_mais_ouvido)
+
         console.log('Tocando');
         await sound.playAsync();
       }

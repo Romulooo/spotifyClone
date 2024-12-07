@@ -13,8 +13,7 @@ export default function Profile({ navigation }) {
     const punk_rock = AsyncStorage.getItem('punk_rock')
     const pop = AsyncStorage.getItem('pop')
     const musicas = AsyncStorage.getItem('musicas')
-
-    
+    const genero_mais_ouvido = AsyncStorage.getItem('genero_mais_ouvido')
     return( <View backgroundColor="#2e2e2e">
         <StatusBar barStyle="light-content"/>
         <Navegador navigation={navigation}/>
@@ -22,7 +21,7 @@ export default function Profile({ navigation }) {
         <Text style = {Estilo.titulo} >Perfil</Text>
         <Text style = {Estilo.subtitulo}>Músicas ouvidas: <Text style={Estilo.informação}>{musicas}</Text></Text>
         <Text style = {Estilo.subtitulo}>Artista mais ouvido: <Text style={Estilo.informação}>{rock}</Text></Text>
-        <Text style = {Estilo.subtitulo}>Gênero mais ouvido: <Text style={Estilo.informação}>{rock}</Text></Text>
+        <Text style = {Estilo.subtitulo}>Gênero mais ouvido: <Text style={Estilo.informação}>{genero_mais_ouvido}</Text></Text>
         <Text></Text>
         <Text></Text>
         <Text></Text>
