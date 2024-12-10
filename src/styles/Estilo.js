@@ -60,7 +60,7 @@ export default StyleSheet.create({
         width: 32,
         right: 32,
         top: -100,
-        position: "absolute",
+        position: "absolute"
     },
     semLikes: {
         fontSize: 32,

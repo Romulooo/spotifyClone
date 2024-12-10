@@ -12,18 +12,14 @@ import SalvarMusicaCurtida from "../functions/SalvarMusicaCurtida";
 import ObterMusicasCurtidas from "../functions/ObterMusicasCurtidas";
 import LimparMusicaCurtida from "../functions/LimparMusicaCurtida";
 
-let rock = '0'
-let punk_rock = '0'
-let mpb = '0'
-let pop = '0'
 let musicas = '0'
-let genero_mais_ouvido = 'Nenhum'
 
 export default function Conteudo(props) {
-    const [ estado, definirEstado ] = useState(true)
-    const [ curtido, definirCurtido ] = useState(false)
+  const [curtido, definirCurtido] = useState(false);
+  const [sound, setSound] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [sound, setSound] = useState();
     
     function Curtir() {
         if (curtido) LimparMusicaCurtida(props.id)
@@ -31,81 +27,98 @@ export default function Conteudo(props) {
         definirCurtido(!curtido)
     }
 
-    useEffect(function() {
+     // Carrega as músicas curtidas na montagem do componente
+      useEffect(() => {
         async function obterCurtidas() {
-          const lista = await ObterMusicasCurtidas()
-          if (lista.includes(props.id))
-            definirCurtido(true)
+          const lista = await ObterMusicasCurtidas();
+          if (lista.includes(props.id)) {
+            definirCurtido(true);
+          }
         }
-        obterCurtidas()
-      }, [])
+        obterCurtidas();
+      }, [props.id]);
 
-    async function playSound() {     
-        let fonte = props.fonte
+
+       // Função para tocar ou pausar a música
+      async function togglePlayPause() {
         
-        console.log('Carregando');
-        const { sound } = await Audio.Sound.createAsync(fonte);
-           
-        setSound(sound);
-        console.log(props.genero);
-        if (props.genero == "rock"){
-          rock = String(Number(rock)+1)
-          AsyncStorage.setItem('rock',rock)
-        }
-        else if (props.genero == "punk rock"){
-          punk_rock = String(Number(punk_rock)+1)
-          AsyncStorage.setItem('punk_rock',punk_rock)
-        }
-        else if (props.genero == "MPB"){
-          mpb = String(Number(mpb)+1)
-          AsyncStorage.setItem('MPB',mpb)
-        }
-        else if (props.genero == "pop"){
-          pop = String(Number(pop)+1)
-          AsyncStorage.setItem('pop',pop)
-        }
+        atualizarEstatisticas(props.genero)
+        setIsLoading(true);
+        try {
+          if (sound && isPlaying) {
+            console.log("Pausando som...");
+            await sound.pauseAsync();
+            setIsPlaying(false);
+          } else {
+            console.log(musicas)
+            musicas = String(Number(musicas)+1)
+            AsyncStorage.setItem('musicas',musicas)
+            if (!sound) {
+              console.log("Carregando som...");
+              const { sound: newSound } = await Audio.Sound.createAsync(props.fonte);
+              setSound(newSound);
+              console.log("Som carregado com sucesso");
 
-        musicas = String(Number(musicas)+1)
-        AsyncStorage.setItem('musicas',musicas)
-        
-        console.log(Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)))
-
-        if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(rock)){
-          genero_mais_ouvido = 'Rock'
-          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
+              newSound.setOnPlaybackStatusUpdate((status) => {
+                if (status.didJustFinish) {
+                  setIsPlaying(false);
+                }
+              });
+              
+              await newSound.playAsync();
+              console.log("Som reproduzindo...");
+              setIsPlaying(true);
+            } else {
+              console.log("Reproduzindo som...");
+              await sound.playAsync();
+              setIsPlaying(true);
+            }
+          }
+        } catch (error) {
+          console.error("Erro ao reproduzir som:", error);
+        } finally {
+          setIsLoading(false);
         }
-        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(punk_rock)) {
-          genero_mais_ouvido = 'Punk rock'
-          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
-        }
-        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(pop)) {
-          genero_mais_ouvido = 'Pop'
-          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
-        }
-        else if (Math.max(Number(rock),Number(mpb),Number(pop),Number(punk_rock)) == Number(mpb)) {
-          genero_mais_ouvido = 'MPB'
-          AsyncStorage.setItem('genero_mais_ouvido',genero_mais_ouvido)
-        }
-        console.log(genero_mais_ouvido)
-
-        console.log('Tocando');
-        await sound.playAsync();
       }
 
+
+      // Atualiza estatísticas de gênero e músicas tocadas
+      async function atualizarEstatisticas(genero) {
+        const generos = ["Rock", "Punk rock", "MPB", "Pop"];
+        const stats = {};
+
+        for (const key of generos) {
+          const value = await AsyncStorage.getItem(key);
+          stats[key] = Number(value || "0");
+        }
+
+        stats[genero] = stats[genero] + 1;
+        stats["musicas"] = (stats["musicas"] || 0) + 1;
+
+        for (const key in stats) {
+          await AsyncStorage.setItem(key, String(stats[key]));
+        }
+
+        // Determina o gênero mais ouvido
+        const generoMaisOuvido = generos.reduce((a, b) => (stats[a] > stats[b] ? a : b));
+        await AsyncStorage.setItem("genero_mais_ouvido", generoMaisOuvido);
+      }
+
+      // Limpa o som ao desmontar o componente
       useEffect(() => {
-        return sound
-          ? () => {
-              console.log('Parando');
-              sound.unloadAsync();
-            }
-          : undefined;
+        return () => {
+          if (sound) {
+            sound.unloadAsync();
+          }
+        };
       }, [sound]);
+
     
 
     return <View>
         <View>
             <Pressable style={Estilo.musica} onPress={() => {
-                playSound()
+                togglePlayPause()
             }}>
                 <Image style={ Estilo.musicaIcone } source={ props.imagem } />
                 <Text style={ Estilo.musicaTitulo }> { props.nome } </Text>

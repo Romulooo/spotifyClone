@@ -22,13 +22,14 @@ export default function Home({ navigation }) {
         { DadosAleatorio.length > 0 &&
         DadosAleatorio.map(function(musica) {
             return <Conteudo 
-              nome = { musica.nome }
-              banda = { musica.banda }
-              genero = {musica.genero}
-              imagem = {musica.imagem}
-              fonte = {musica.fonte} 
-              id = {musica.id}
-              />
+                key = { musica.id } // Adicionando a propriedade key
+                nome = { musica.nome }
+                banda = { musica.banda }
+                genero = { musica.genero }
+                imagem = { musica.imagem }
+                fonte = { musica.fonte } 
+                id = { musica.id }
+            />
           })
         }
         
