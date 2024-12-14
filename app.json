@@ -4,11 +4,11 @@
     "slug": "spotify",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconeHome.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/iconeHome.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/iconeHome.png"
+      "favicon": "./assets/logo.png"
     }
   }
 }

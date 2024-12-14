@@ -24,7 +24,7 @@ export default function Likes({ navigation }) {
         <View style={{ backgroundColor: "#2e2e2e", flex: 1 }}>
             <StatusBar barStyle="light-content" backgroundColor="#000000" />
             <Navegador navigation={navigation} />
-            <ScrollView pagingEnabled>
+            <ScrollView>
                 <Text style={Estilo.titulo}>Likes</Text>
 
                 {curtidas.length > 0 ? (
@@ -34,6 +34,7 @@ export default function Likes({ navigation }) {
                                 key = { musica.id }
                                 nome = { musica.nome }
                                 banda = { musica.banda }
+                                genero = { musica.genero }
                                 imagem = { musica.imagem }
                                 fonte = { musica.fonte }
                                 id = { musica.id }
@@ -45,6 +46,7 @@ export default function Likes({ navigation }) {
                         <Text style={Estilo.semLikes}>Nenhuma música curtida!</Text>
                     </View>
                 )}
+                <Text style={Estilo.espaçamento}></Text>
             </ScrollView>
         </View>
     );

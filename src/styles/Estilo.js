@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native"
+import { Dimensions, ScrollView, StyleSheet } from "react-native"
 
 export default StyleSheet.create({
     titulo: {
@@ -7,12 +7,18 @@ export default StyleSheet.create({
         marginBottom: 48,
         fontSize: 32,
         fontWeight: 700,
-        color: "#fff",
+        color: '#fff',
     },
     subtitulo: {
         left: 16,
         fontSize: 26,
         fontWeight: 500,
+        color: "#fff",
+    },
+    subsubtitulo: {
+        left: 16,
+        fontSize: 20,
+        fontWeight: 400,
         color: "#fff",
     },
     informação: {
@@ -45,7 +51,7 @@ export default StyleSheet.create({
         fontSize: 18,
         fontWeight: 500,
         bottom: "60%",
-        left: 92,
+        left: 90,
         color: "#fff"
     },
     musicaBanda: {
@@ -60,7 +66,7 @@ export default StyleSheet.create({
         width: 32,
         right: 32,
         top: -100,
-        position: "absolute"
+        position: "absolute",
     },
     semLikes: {
         fontSize: 32,
@@ -69,5 +75,8 @@ export default StyleSheet.create({
         color: "#fff",
         fontWeight: 100,
     },
+    espaçamento: {
+        height: 72
+    }
 })
 

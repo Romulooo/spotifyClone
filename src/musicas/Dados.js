@@ -72,4 +72,20 @@ export default [
         imagem: require("./imagens/vol3 (the subliminal verses).jpeg"),
         id: "99999"
       },
+      {
+        nome: "Construção",
+        banda: "Chico Buarque",
+        genero: "MPB",
+        fonte: require("./Construção - Chico Buarque.mp3"),
+        imagem: require("./imagens/construção.webp"),
+        id: "12121"
+      },
+      {
+        nome: "Billie Jean",
+        banda: "Michael Jackson",
+        genero: "pop",
+        fonte: require("./Michael Jackson - Billie Jean.mp3"),
+        imagem: require("./imagens/thriller.jpg"),
+        id: "32323"
+      },
   ];

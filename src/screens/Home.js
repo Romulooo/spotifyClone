@@ -12,10 +12,10 @@ const DadosAleatorio = Dados.sort(function() {
 
 export default function Home({ navigation }) {
 
-    return( <View backgroundColor="#2e2e2e">
+    return( <View style={{ backgroundColor: "#2e2e2e", flex: 1 }}>
         <StatusBar barStyle="light-content" backgroundColor="#000000"/>
         <Navegador navigation={navigation}/>
-        <ScrollView pagingEnabled>
+        <ScrollView>
 
         <Text style = {Estilo.titulo} >Início</Text>
 
@@ -33,37 +33,8 @@ export default function Home({ navigation }) {
           })
         }
         
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
+        <Text style={Estilo.espaçamento}></Text>
+        
         </ScrollView>
     </View>
     );  
